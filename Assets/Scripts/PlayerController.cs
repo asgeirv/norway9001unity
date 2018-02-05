@@ -15,6 +15,7 @@ public class PlayerController : MonoBehaviour
 
     public float speed;
     public float tilt;
+    public float minSpeed;
     public Boundary boundary;
 
     public GameObject shot;
@@ -41,8 +42,18 @@ public class PlayerController : MonoBehaviour
 
     private void FixedUpdate()
     {
+    
         float moveHorizontal = Input.GetAxis("Horizontal");
+        if(moveHorizontal < 0)
+        {
+            Mathf.Lerp(moveHorizontal, -minSpeed, -speed);
+        } else if (moveHorizontal > 0)
+        {
+            Mathf.Lerp(moveHorizontal, minSpeed, speed);
+        }
+
         float moveVertical = Input.GetAxis("Vertical");
+        
 
         Vector3 movement = new Vector3(moveHorizontal, 0.0f, moveVertical);
         rb.velocity = movement * speed;
