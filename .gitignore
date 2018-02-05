@@ -22,3 +22,6 @@ sysinfo.txt
 
 # Lock file for SQL
 db.lock
+
+# Windows thumbs file
+Thumbs.db*
