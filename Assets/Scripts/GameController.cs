@@ -11,6 +11,8 @@ public class GameController : MonoBehaviour
     public float startWait;
     public float waveWait;
 
+    public bool turnOfSpawnWaves;
+
     void Start()
     {
         StartCoroutine (SpawnWaves());
@@ -19,17 +21,21 @@ public class GameController : MonoBehaviour
     IEnumerator SpawnWaves()
     {
         yield return new WaitForSeconds(startWait);
-
-        while (true)
+        if (!turnOfSpawnWaves)
         {
-            for (int i = 1; i < hazardCount; i++)
+
+
+            while (true)
             {
-                Vector3 spawnPosition = new Vector3(Random.Range(-spawnValues.x, spawnValues.x), spawnValues.y, spawnValues.z);
-                Quaternion spawnRotation = Quaternion.identity;
-                Instantiate(hazard, spawnPosition, spawnRotation);
-                yield return new WaitForSeconds(spawnWait);
+                for (int i = 1; i < hazardCount; i++)
+                {
+                    Vector3 spawnPosition = new Vector3(Random.Range(-spawnValues.x, spawnValues.x), spawnValues.y, spawnValues.z);
+                    Quaternion spawnRotation = Quaternion.identity;
+                    Instantiate(hazard, spawnPosition, spawnRotation);
+                    yield return new WaitForSeconds(spawnWait);
+                }
+                yield return new WaitForSeconds(waveWait);
             }
-            yield return new WaitForSeconds(waveWait);
         }
     }
 }
