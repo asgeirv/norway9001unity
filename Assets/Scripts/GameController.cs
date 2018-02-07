@@ -25,6 +25,7 @@ public class GameController : MonoBehaviour
     private bool gameOver;
     private bool restart;
     private int score;
+    private string path;
 
 
     void Start()
@@ -34,6 +35,7 @@ public class GameController : MonoBehaviour
         restartText.text = "";
         gameOverText.text = "";
         highscoreText.text = "";
+        path = Application.dataPath + "/test.txt";
         score = 0;
         UpdateScore();
         StartCoroutine (SpawnWaves());
@@ -79,11 +81,13 @@ public class GameController : MonoBehaviour
         PrintHighscore();
 
     }
+
     public void AddScore(int newScoreValue)
     {
         score += newScoreValue;
         UpdateScore();
     }
+
     void UpdateScore()
     {
         scoreText.text = "Score: " + score;
@@ -95,9 +99,9 @@ public class GameController : MonoBehaviour
         int highscore = 0;
         int read;
 
-        // Read the file and display it line by line.  
+  
         System.IO.StreamReader file =
-            new System.IO.StreamReader(@"C:\Users\Kristian\Documents\SpaceShooter\test.txt");
+            new System.IO.StreamReader(path);
         while ((line = file.ReadLine()) != null)
         {
             read = Int32.Parse(line);
@@ -114,7 +118,7 @@ public class GameController : MonoBehaviour
 
     void PrintScore()
     {
-        using (StreamWriter sw = File.AppendText(@"C:\Users\Kristian\Documents\SpaceShooter\test.txt"))
+        using (StreamWriter sw = File.AppendText(path))
         {
             sw.WriteLine(score);
         }
