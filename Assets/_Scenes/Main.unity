@@ -365,6 +365,10 @@ Prefab:
       propertyPath: m_LocalEulerAnglesHint.x
       value: 90
       objectReference: {fileID: 0}
+    - target: {fileID: 2300000, guid: c47ccfdda24597543900b7b9460775f5, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: c47ccfdda24597543900b7b9460775f5, type: 3}
   m_IsPrefabParent: 0
@@ -1089,7 +1093,7 @@ MeshCollider:
   m_GameObject: {fileID: 1300281616}
   m_Material: {fileID: 0}
   m_IsTrigger: 1
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 3
   m_Convex: 1
   m_CookingOptions: 14
@@ -1121,8 +1125,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4b60f0de455f61e459603d7f2dfb5d6a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 10
+  speed: 15
   tilt: 4
+  minSpeed: 0
   boundary:
     xMin: -10
     xMax: 10
@@ -1131,7 +1136,19 @@ MonoBehaviour:
   shot: {fileID: 1497588304898548, guid: 1812db5f410629f4e920028607fab13c, type: 2}
   shotSpawn1: {fileID: 2094055301}
   shotSpawn2: {fileID: 1102196112}
-  fireRate: 0.25
+  fireRate: 0.01
+--- !u!65 &1300281623
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1300281616}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: -1.5, y: -0.3, z: -1.34}
+  m_Center: {x: -0.00046964362, y: 0.03399443, z: 0.35}
 --- !u!1 &1507189497
 GameObject:
   m_ObjectHideFlags: 0
@@ -1162,10 +1179,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   hazard: {fileID: 1346147494473104, guid: c72cff44f46564b4faa57489c906c425, type: 2}
   spawnValues: {x: 10, y: 0, z: 17.5}
-  hazardCount: 10
-  spawnWait: 0.5
+  hazardCount: 100
+  spawnWait: 0.01
   startWait: 1
-  waveWait: 4
+  waveWait: 0.5
   totalNumberOfWaves: 5
   scoreText: {fileID: 1570172948}
   restartText: {fileID: 931057688}
