@@ -79,7 +79,6 @@ public class GameController : MonoBehaviour
         }
         PrintScore();
         PrintHighscore();
-
     }
 
     public void AddScore(int newScoreValue)

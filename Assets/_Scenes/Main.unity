@@ -1166,7 +1166,7 @@ MonoBehaviour:
   spawnWait: 0.5
   startWait: 1
   waveWait: 4
-  totalNumberOfWaves: 1
+  totalNumberOfWaves: 5
   scoreText: {fileID: 1570172948}
   restartText: {fileID: 931057688}
   gameOverText: {fileID: 676344322}
