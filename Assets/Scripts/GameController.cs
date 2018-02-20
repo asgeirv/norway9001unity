@@ -67,6 +67,10 @@ public class GameController : MonoBehaviour
                 Vector3 spawnPosition = new Vector3(UnityEngine.Random.Range(-spawnValues.x, spawnValues.x), spawnValues.y, spawnValues.z);
                 Quaternion spawnRotation = Quaternion.identity;
                 Instantiate(hazard, spawnPosition, spawnRotation);
+                if (gameOver)
+                {
+                    break;
+                }
                 yield return new WaitForSeconds(spawnWait);
             }
             if (gameOver || numberOfWaves == totalNumberOfWaves)
@@ -79,6 +83,7 @@ public class GameController : MonoBehaviour
         }
         PrintScore();
         PrintHighscore();
+
     }
 
     public void AddScore(int newScoreValue)

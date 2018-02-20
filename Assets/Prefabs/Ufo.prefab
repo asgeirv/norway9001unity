@@ -40,6 +40,8 @@ GameObject:
   - component: {fileID: 4570743976724420}
   - component: {fileID: 33914905231329122}
   - component: {fileID: 23590269530273328}
+  - component: {fileID: 114684635037143020}
+  - component: {fileID: 54627690480764868}
   m_Layer: 0
   m_Name: Ufo
   m_TagString: Untagged
@@ -53,14 +55,14 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1877306641680416}
-  m_LocalRotation: {x: -0.7071068, y: 0, z: -0, w: 0.7071067}
+  m_LocalRotation: {x: 0.7071068, y: 0, z: 0, w: 0.7071068}
   m_LocalPosition: {x: -0, y: 0, z: 0}
-  m_LocalScale: {x: 200, y: 200, z: 200}
+  m_LocalScale: {x: 30, y: 30, z: 30}
   m_Children:
   - {fileID: 4881499218748564}
   m_Father: {fileID: 0}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 90, y: 0, z: 0}
 --- !u!4 &4881499218748564
 Transform:
   m_ObjectHideFlags: 1
@@ -157,13 +159,28 @@ MeshFilter:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1169283971995518}
   m_Mesh: {fileID: 4300000, guid: 58cb09bb54142b44c9c7018bd26f81d6, type: 3}
+--- !u!54 &54627690480764868
+Rigidbody:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1877306641680416}
+  serializedVersion: 2
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0
+  m_UseGravity: 0
+  m_IsKinematic: 0
+  m_Interpolate: 0
+  m_Constraints: 16
+  m_CollisionDetection: 0
 --- !u!114 &114054096764522996
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1169283971995518}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 998b142721e3a974ea5d85ea4f6ff640, type: 3}
   m_Name: 
@@ -181,3 +198,15 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   parent: {fileID: 1877306641680416}
   rotationSpeed: 100
+--- !u!114 &114684635037143020
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1877306641680416}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 02227d94618df1a4ca6bcbf45e9ed2ea, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  speed: -10
