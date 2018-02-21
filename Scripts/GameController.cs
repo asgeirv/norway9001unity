@@ -14,6 +14,8 @@ public class GameController : MonoBehaviour
     public float startWait;
     public float waveWait;
     public int totalNumberOfWaves;
+    public int wavetype;
+    public bool debug;
 
 
 
@@ -61,17 +63,32 @@ public class GameController : MonoBehaviour
 
         while (continueGame)
         {
-            numberOfWaves = numberOfWaves + 1;
-            for (int i = 1; i < hazardCount; i++)
+            if (debug)
             {
-                Vector3 spawnPosition = new Vector3(UnityEngine.Random.Range(-spawnValues.x, spawnValues.x), spawnValues.y, spawnValues.z);
-                Quaternion spawnRotation = Quaternion.identity;
-                Instantiate(hazard, spawnPosition, spawnRotation);
-                if (gameOver)
+                Debug.Log("spawnWaves startet");
+            }
+            for (int i = 0; i < totalNumberOfWaves; i++)
+            {
+                if (debug)
                 {
-                    break;
+                    Debug.Log("forloop startet");
                 }
-                yield return new WaitForSeconds(spawnWait);
+                switch (wavetype)
+                {
+                    case 1:
+                        Console.WriteLine("Arrow wawe");
+                        arrowFormation();
+                        break;
+                    case 2:
+                        Console.WriteLine("random wawe");
+                        randomWawee(10);
+                        break;
+                    default:
+                        Console.WriteLine("Default case");
+                        randomWawee(10);
+                        break;
+                }
+                yield return new WaitForSeconds(waveWait);
             }
             if (gameOver || numberOfWaves == totalNumberOfWaves)
             {
@@ -132,5 +149,51 @@ public class GameController : MonoBehaviour
     {
         gameOverText.text = "Game Over!";
         gameOver = true;
+    }
+
+    public void arrowFormation()
+    {
+        float xAxis = UnityEngine.Random.Range(-spawnValues.x, spawnValues.x);
+
+
+        Vector3 spawnPosition = new Vector3(xAxis + 0, spawnValues.y, spawnValues.z + 0);
+        Quaternion spawnRotation = Quaternion.identity;
+        Instantiate(hazard, spawnPosition, spawnRotation);
+
+        Vector3 spawnPosition2 = new Vector3(xAxis -1, spawnValues.y, spawnValues.z + 1);
+        Quaternion spawnRotation2 = Quaternion.identity;
+        Instantiate(hazard, spawnPosition2, spawnRotation);
+
+        Vector3 spawnPosition3 = new Vector3(xAxis -2, spawnValues.y, spawnValues.z + 2);
+        Quaternion spawnRotation3 = Quaternion.identity;
+        Instantiate(hazard, spawnPosition3, spawnRotation);
+
+        Vector3 spawnPosition4 = new Vector3(xAxis -3, spawnValues.y, spawnValues.z + 3);
+        Quaternion spawnRotation4 = Quaternion.identity;
+        Instantiate(hazard, spawnPosition4, spawnRotation);
+
+        Vector3 spawnPosition5 = new Vector3(xAxis + 1, spawnValues.y, spawnValues.z + 1);
+        Quaternion spawnRotation5 = Quaternion.identity;
+        Instantiate(hazard, spawnPosition5, spawnRotation);
+
+        Vector3 spawnPosition6 = new Vector3(xAxis + 2, spawnValues.y, spawnValues.z + 2);
+        Quaternion spawnRotation6 = Quaternion.identity;
+        Instantiate(hazard, spawnPosition6, spawnRotation);
+
+        Vector3 spawnPosition7 = new Vector3(xAxis + 3, spawnValues.y, spawnValues.z + 3);
+        Quaternion spawnRotation7 = Quaternion.identity;
+        Instantiate(hazard, spawnPosition7, spawnRotation);
+
+    }
+    public void randomWawee(int numberOfWaves)
+    {
+        numberOfWaves = numberOfWaves + 1;
+        for (int i = 1; i < hazardCount; i++)
+        {
+            Vector3 spawnPosition = new Vector3(UnityEngine.Random.Range(-spawnValues.x, spawnValues.x), spawnValues.y, spawnValues.z);
+            Quaternion spawnRotation = Quaternion.identity;
+            Instantiate(hazard, spawnPosition, spawnRotation);
+            
+        }
     }
 }
