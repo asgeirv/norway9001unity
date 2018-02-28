@@ -21,7 +21,7 @@ GameObject:
   - component: {fileID: 4025962419131776}
   - component: {fileID: 33884146285415688}
   - component: {fileID: 23360523227850234}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: VFX
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -39,10 +39,11 @@ GameObject:
   - component: {fileID: 54026999712494116}
   - component: {fileID: 136061376793748864}
   - component: {fileID: 114099083642509306}
+  - component: {fileID: 114753411738673762}
   - component: {fileID: 82321866525083550}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: Bolt
-  m_TagString: Untagged
+  m_TagString: Bolt
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -222,6 +223,17 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 20
+--- !u!114 &114753411738673762
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1497588304898548}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a470b6a7a7690114cb077ed7eb2c218e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!136 &136061376793748864
 CapsuleCollider:
   m_ObjectHideFlags: 1

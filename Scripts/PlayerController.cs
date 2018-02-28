@@ -19,9 +19,13 @@ public class PlayerController : MonoBehaviour
     public Boundary boundary;
 
     public GameObject shot;
+    public GameObject shot2;
+
     public Transform shotSpawn1;
     public Transform shotSpawn2;
+    public Transform shotSpawn3;
     public float fireRate;
+    public float fireRate2;
 
     private float nextFire;
 
@@ -37,6 +41,12 @@ public class PlayerController : MonoBehaviour
             nextFire = Time.time + fireRate;
             Instantiate(shot, shotSpawn1.position, shotSpawn1.rotation);
             Instantiate(shot, shotSpawn2.position, shotSpawn2.rotation);
+        }
+        if (Input.GetButton("Fire2") && Time.time > nextFire)
+        {
+            nextFire = Time.time + fireRate2;
+            Instantiate(shot2, shotSpawn3.position, shotSpawn3.rotation);
+           
         }
     }
 

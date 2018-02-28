@@ -21,7 +21,7 @@ GameObject:
   - component: {fileID: 4104276537194306}
   - component: {fileID: 33839588882419730}
   - component: {fileID: 23260851816033336}
-  m_Layer: 0
+  m_Layer: 13
   m_Name: VFX
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -39,10 +39,11 @@ GameObject:
   - component: {fileID: 54109199785964274}
   - component: {fileID: 136292191617973556}
   - component: {fileID: 114596661724940104}
+  - component: {fileID: 114421945485165508}
   - component: {fileID: 82067311461874642}
-  m_Layer: 0
+  m_Layer: 13
   m_Name: Bolt Enemy
-  m_TagString: Untagged
+  m_TagString: EnemyBolt
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -210,6 +211,17 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 0
+--- !u!114 &114421945485165508
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1727556392962870}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a470b6a7a7690114cb077ed7eb2c218e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &114596661724940104
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -221,7 +233,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 02227d94618df1a4ca6bcbf45e9ed2ea, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: -20
+  speed: -10
 --- !u!136 &136292191617973556
 CapsuleCollider:
   m_ObjectHideFlags: 1

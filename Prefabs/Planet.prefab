@@ -21,7 +21,7 @@ GameObject:
   - component: {fileID: 4482723267865560}
   - component: {fileID: 23818866209167890}
   - component: {fileID: 33065697493614960}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: VFX
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -40,7 +40,7 @@ GameObject:
   - component: {fileID: 114078797313944130}
   - component: {fileID: 54368693304007858}
   - component: {fileID: 135692577784463976}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: Planet
   m_TagString: BackgroundObject
   m_Icon: {fileID: 0}

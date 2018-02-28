@@ -22,9 +22,12 @@ GameObject:
   - component: {fileID: 54833901677971448}
   - component: {fileID: 136975940321965766}
   - component: {fileID: 114973856790519720}
+  - component: {fileID: 114175940169737504}
+  - component: {fileID: 114459387778073814}
   - component: {fileID: 114337905343095832}
   - component: {fileID: 114831691375569140}
-  m_Layer: 0
+  - component: {fileID: 114872788406684382}
+  m_Layer: 14
   m_Name: Asteroid
   m_TagString: Enemy
   m_Icon: {fileID: 0}
@@ -41,9 +44,9 @@ GameObject:
   - component: {fileID: 4066993753337008}
   - component: {fileID: 33021128642349818}
   - component: {fileID: 23794732358134834}
-  m_Layer: 0
+  m_Layer: 14
   m_Name: prop_asteroid_01
-  m_TagString: Enemy
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -131,6 +134,18 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
+--- !u!114 &114175940169737504
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1346147494473104}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9308d656713abb048be886b9af2ad568, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  health: 2
 --- !u!114 &114337905343095832
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -143,6 +158,19 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: -5
+--- !u!114 &114459387778073814
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1346147494473104}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3d4da5fe22ef08145a940e81e1fc0e44, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Ammo: {fileID: 1348071967010074, guid: a12105cab2e25ad408a622d2e27dae30, type: 2}
+  dropValue: 0.1
 --- !u!114 &114831691375569140
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -156,8 +184,18 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   explosion: {fileID: 100004, guid: 2857e183f4cd3df4e9096e5b578bd32f, type: 2}
   playerExplosion: {fileID: 100008, guid: a93496017806b7740910df5fd946f306, type: 2}
-  Ammo: {fileID: 1766909408515978, guid: b37582e05d6930949ba10328303fb5cd, type: 2}
   scoreValue: 10
+--- !u!114 &114872788406684382
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1346147494473104}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a470b6a7a7690114cb077ed7eb2c218e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &114973856790519720
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -177,7 +215,7 @@ CapsuleCollider:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1346147494473104}
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_Enabled: 1
   m_Radius: 0.5587764
   m_Height: 1.8854084

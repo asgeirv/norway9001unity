@@ -7,13 +7,26 @@ public class ContactCheck : MonoBehaviour
 
     public GameObject explosion;
     public GameObject playerExplosion;
-    public GameObject Ammo;
+    private HealthCheck h;
+
+
 
     public int scoreValue;
     private GameController gameController;
+    private GameObject playerInventory;
+    private GameObject healthCheck;
+
+
+    bool boolean;
 
     private void Start()
     {
+        h = gameObject.GetComponent<HealthCheck>();
+        healthCheck = this.gameObject;
+        boolean = false;
+        /**
+         * Finne gamecontrolleren som blir brukt i unity
+         **/
         GameObject gameControllerObject = GameObject.FindWithTag("GameController");
         if (gameControllerObject != null)
         {
@@ -26,47 +39,96 @@ public class ContactCheck : MonoBehaviour
 
     }
 
+    private void Update()
+    {
+        /**
+         * Kaller GameOver() og initialiserer en eksplosjon når player health er 0
+         * */
+        if (tag == "Player" && h.GetHealth() <= 0)
+        {
+            Instantiate(playerExplosion, transform.position, transform.rotation);
+            gameController.GameOver("Asgeir is a noob!");
+        }
+     }
+
+    /**
+     * Sjekker om ting kolliderer og utfører dei riktige handlingane basert på hva som kolliderer
+     * */
+
     private void OnTriggerEnter(Collider other)
     {
-        if ((tag == "Enemy" || tag == "Bolt" || tag == "PickUps") && other.tag == "PickUps")
-        {
-            //Physics.IgnoreCollision(Ammo.GetComponent<Collider>(), GetComponent<Collider>());
-            return;
-        }
-      
-        if (other.tag == "Boundary" || other.tag == "BackgroundObject")
-        {
-            return;
-        }
 
-        if (other.tag == "PickUps" && other.tag == "Player")
-        {
-            Destroy(gameObject);
-            return;
-        }
-
-
+        /**
+         * Når Enemy blir skutt blir det initialisert en eksplosjon,
+         * Enemy tar skade og skuddet blir ødelagt
+         * TODO: evt. ved kraftige skudd blir de ikke ødelagt og går igjennom
+         * */
         if (other.tag == "Bolt" && tag == "Enemy")
-        {
-
-            if (Random.value < 0.8)
             {
-                Instantiate(Ammo, other.transform.position, other.transform.rotation);
+
+            Instantiate(explosion, transform.position, transform.rotation);
+            h.DoDamage();
+            Destroy(other.gameObject);
+            
+
             }
-        }
 
 
 
-        if (other.tag == "Player")
-        {
+            /**
+             * Når Player blir skutt blir det initialisert en eksplosjon,
+             * player tar skade og skuddet blir ødelagt
+             * TODO: evt. ved kraftige skudd blir de ikke ødelagt og går igjennom
+             * */
+            if (other.tag == "EnemyBolt" && tag == "Player")
+            {
+                Instantiate(explosion, transform.position, transform.rotation);
+                h.DoDamage();
+                Destroy(other.gameObject);
+            }
+
+            /**
+             * Plukker opp ammo når player kolliderer med den og ødelegger den
+             * */
+
+            if (tag == "PickUps" )
+            {
+                gameController.AddAmmo();
+                Destroy(gameObject);
+                return;
+            }
+
+            /**
+             * Om player kolliderer med en fiende blir player health satt til 0
+             * og enemy skipet blir ødelagt
+             * */
+            if (tag == "Player" && other.tag == "Enemy")
+            {
+           
             Instantiate(playerExplosion, other.transform.position, other.transform.rotation);
-            gameController.GameOver();
+            GameObject p = GameObject.FindGameObjectWithTag("Player");
+            p.GetComponent<HealthCheck>().ZeroHealth();
+            Destroy(other.gameObject);
+            
+                
+            
+            }
+            /*
+            if(!(other.tag == "Bolt" || other.tag == "EnemyBolt" || other.tag == "PickUps"))
+            {
+            Instantiate(playerExplosion, other.transform.position, other.transform.rotation);
+            GameObject p = GameObject.FindGameObjectWithTag("Player");
+            p.GetComponent<HealthCheck>().ZeroHealth();
+            
+
 
         }
-        Instantiate(explosion, transform.position, transform.rotation);
-
-        Destroy(other.gameObject);
-        Destroy(gameObject);
-        gameController.AddScore(scoreValue);
+           
+            */
+            
+            gameController.AddScore(scoreValue);
+        
     }
+
+    
 }
