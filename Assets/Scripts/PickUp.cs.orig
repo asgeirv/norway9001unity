@@ -1,0 +1,62 @@
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+/*public class PickUp : MonoBehaviour {
+
+    public float radius;
+    public GameObject playerxz;
+    public GameObject pickUps;
+    public Transform player;
+    bool dest = false;
+ 
+
+    private Rigidbody2D rb;
+
+void Start () {
+       
+      
+        
+
+	}
+	
+	void Update () {
+
+
+
+
+        float dist = Vector2.Distance(new Vector2(pickUps.transform.position.x, pickUps.transform.position.z), new Vector2(playerxz.transform.position.x, playerxz.transform.position.z));
+        Debug.Log(dist.ToString());
+            Debug.Log(dist);
+        print(dist);
+
+            if (dist <= radius)
+            {
+            dest = true;
+            }
+        else
+        {
+            dest = false;
+        
+        }
+            if(dest == true)
+        {
+            Destroy(pickUps);
+        }
+
+
+         Transform playerPosition = player.GetComponent<Transform>();
+         playerxz =new Vector2(playerPosition.localPosition.x,playerPosition.localPosition.z);
+         pickUps = GetComponentsInChildren<Transform>();
+         foreach(Component pickUp in pickUps) {
+             Transform trans = (Transform)pickUp;
+             Vector2 temp = new Vector2(trans.localPosition.x, trans.localPosition.z);
+             float magnitude = Vector2.Distance(playerxz, temp);
+             
+
+
+        
+          
+    }
+	}
+
+    */

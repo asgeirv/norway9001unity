@@ -1,0 +1,79 @@
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+
+public class ContactCheck : MonoBehaviour
+{
+
+    public GameObject explosion;
+    public GameObject playerExplosion;
+    public GameObject Ammo;
+
+    public int ammoValue;
+    public int scoreValue;
+    private GameController gameController;
+    private GameObject playerInventory;
+
+    
+
+    bool boolean;
+
+    private void Start()
+    {
+        boolean = false;
+        GameObject gameControllerObject = GameObject.FindWithTag("GameController");
+        if (gameControllerObject != null)
+        {
+            gameController = gameControllerObject.GetComponent<GameController>();
+        }
+        if (gameController == null)
+        {
+            Debug.Log("cannot find 'GameController' Script");
+        }
+
+  
+
+    }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        
+
+            if (other.tag == "Bolt" && tag == "Enemy")
+            {
+
+                if (Random.value < 1)
+                {
+                //Debug.Log(other.tag + tag);
+                Vector3 dropPosition = new Vector3(
+                    other.transform.position.x,
+                     -1.5f,
+                    other.transform.position.z
+                );
+                
+                
+            Instantiate(Ammo, dropPosition, new Quaternion(0f,0f,0f,0f));
+                }
+            }
+            if (tag == "PickUps")
+            {
+                gameController.pl.AddAmmo(ammoValue);
+                Destroy(gameObject);
+                return;
+            }
+
+            Instantiate(explosion, transform.position, transform.rotation);
+            if (other.tag == "Player")
+            {
+                
+                Instantiate(playerExplosion, other.transform.position, other.transform.rotation);
+                gameController.GameOver();
+
+            }
+
+            Destroy(other.gameObject);
+            Destroy(gameObject);
+            gameController.AddScore(scoreValue);
+        
+    }
+}

@@ -8,6 +8,7 @@ using UnityEngine.UI;
 public class GameController : MonoBehaviour
 {
     public GameObject hazard;
+    public GameObject player;
     public Vector3 spawnValues;
     public int hazardCount;
     public float spawnWait;
@@ -27,6 +28,8 @@ public class GameController : MonoBehaviour
     private int score;
     private string path;
 
+    public PlayerInventory pl;
+
 
     void Start()
     {
@@ -37,8 +40,10 @@ public class GameController : MonoBehaviour
         highscoreText.text = "";
         path = Application.dataPath + "/test.txt";
         score = 0;
+        Instantiate(player, transform.position, transform.rotation);
         UpdateScore();
         StartCoroutine (SpawnWaves());
+        pl = new PlayerInventory();
     }
 
     private void Update()
@@ -67,6 +72,10 @@ public class GameController : MonoBehaviour
                 Vector3 spawnPosition = new Vector3(UnityEngine.Random.Range(-spawnValues.x, spawnValues.x), spawnValues.y, spawnValues.z);
                 Quaternion spawnRotation = Quaternion.identity;
                 Instantiate(hazard, spawnPosition, spawnRotation);
+                if (gameOver)
+                {
+                    break;
+                }
                 yield return new WaitForSeconds(spawnWait);
             }
             if (gameOver || numberOfWaves == totalNumberOfWaves)
@@ -92,6 +101,7 @@ public class GameController : MonoBehaviour
     {
         scoreText.text = "Score: " + score;
     }
+
 
     void PrintHighscore()
     {

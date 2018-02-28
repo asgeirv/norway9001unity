@@ -21,7 +21,7 @@ GameObject:
   - component: {fileID: 4422842882121492}
   - component: {fileID: 33226858388407300}
   - component: {fileID: 23063587204744952}
-  m_Layer: 0
+  m_Layer: 14
   m_Name: vehicle_enemyShip
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -41,9 +41,12 @@ GameObject:
   - component: {fileID: 65061278655416782}
   - component: {fileID: 54054116158004398}
   - component: {fileID: 114111642108597828}
-  m_Layer: 0
+  - component: {fileID: 114633883684528194}
+  - component: {fileID: 114539699685761704}
+  - component: {fileID: 114308441523499686}
+  m_Layer: 14
   m_Name: Kamikaze
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -56,7 +59,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4238991772644188}
-  m_Layer: 0
+  m_Layer: 14
   m_Name: Shot Spawn
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -168,7 +171,7 @@ BoxCollider:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1303018501958348}
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
   m_Size: {x: 1.48, y: 0.67, z: 1.46}
@@ -186,7 +189,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   explosion: {fileID: 100004, guid: 2857e183f4cd3df4e9096e5b578bd32f, type: 2}
   playerExplosion: {fileID: 100008, guid: a93496017806b7740910df5fd946f306, type: 2}
-  Ammo: {fileID: 1766909408515978, guid: b37582e05d6930949ba10328303fb5cd, type: 2}
   scoreValue: 20
 --- !u!114 &114111642108597828
 MonoBehaviour:
@@ -200,8 +202,44 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   shotSpawn: {fileID: 4238991772644188}
-  fireRate: 0.4
+  fireRate: 2
   shot: {fileID: 1727556392962870, guid: 1cf8a23c99ef45f459de3df9564a6dc2, type: 2}
+--- !u!114 &114308441523499686
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1303018501958348}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a470b6a7a7690114cb077ed7eb2c218e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &114539699685761704
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1303018501958348}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3d4da5fe22ef08145a940e81e1fc0e44, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Ammo: {fileID: 1348071967010074, guid: a12105cab2e25ad408a622d2e27dae30, type: 2}
+  dropValue: 0.2
+--- !u!114 &114633883684528194
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1303018501958348}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9308d656713abb048be886b9af2ad568, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  health: 5
 --- !u!114 &114895856667753458
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -213,4 +251,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 02227d94618df1a4ca6bcbf45e9ed2ea, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: -10
+  speed: -5

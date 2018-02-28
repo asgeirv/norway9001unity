@@ -7,16 +7,19 @@ using UnityEngine.UI;
 
 public class GameController : MonoBehaviour
 {
-    public GameObject hazard;
+
+    public GameObject player;
     public Vector3 spawnValues;
     public int hazardCount;
     public float spawnWait;
     public float startWait;
     public float waveWait;
     public int totalNumberOfWaves;
+    public int ammoValue;
+   
+    GameObject[] waves;
 
-
-
+ 
     public Text scoreText;
     public Text restartText;
     public Text gameOverText;
@@ -27,9 +30,13 @@ public class GameController : MonoBehaviour
     private int score;
     private string path;
 
+    public PlayerInventory pl;
+    
 
     void Start()
     {
+
+
         gameOver = false;
         restart = false;
         restartText.text = "";
@@ -37,12 +44,24 @@ public class GameController : MonoBehaviour
         highscoreText.text = "";
         path = Application.dataPath + "/test.txt";
         score = 0;
+        Instantiate(player, transform.position, transform.rotation);
         UpdateScore();
-        StartCoroutine (SpawnWaves());
+        StartCoroutine( SpawnWaves());
+        pl = new PlayerInventory();
+        waves = GameObject.FindGameObjectsWithTag("Waves");
+        totalNumberOfWaves = 0;
+        waves[0].SetActive(true);
+        foreach(GameObject w in waves)
+        {
+            w.SetActive(false);
+            totalNumberOfWaves = totalNumberOfWaves + 1;
+        }
+        
     }
 
     private void Update()
     {
+        
         if (restart)
         {                  
            if (Input.GetKeyDown(KeyCode.R))
@@ -52,38 +71,47 @@ public class GameController : MonoBehaviour
             }
         }
     }
-
+    /**
+        * Teller antall enemies,
+        * spawner en ny wave når enemies i nåverende wave er 0,
+        * hindrer neste wave i å spawne dersom player døyr.
+        * var w: index i arrayet waves
+        * var e: antall aktive enemies i en wave
+        * */
     IEnumerator SpawnWaves()
     {
-        yield return new WaitForSeconds(startWait);
-        int numberOfWaves = 0;
-        bool continueGame = true;
-
-        while (continueGame)
+       int w = 0;
+           
+        while (!restart)
         {
-            numberOfWaves = numberOfWaves + 1;
-            for (int i = 1; i < hazardCount; i++)
+            yield return new WaitForSeconds(1);
+            
+            int e = 0;
+            GameObject[] enemies = GameObject.FindGameObjectsWithTag("Enemy");
+            foreach(GameObject g in enemies)
             {
-                Vector3 spawnPosition = new Vector3(UnityEngine.Random.Range(-spawnValues.x, spawnValues.x), spawnValues.y, spawnValues.z);
-                Quaternion spawnRotation = Quaternion.identity;
-                Instantiate(hazard, spawnPosition, spawnRotation);
-                if (gameOver)
-                {
+                e = e + 1;
+                
+            }
+           
+            if (e == 0 && w <= totalNumberOfWaves)
+            {
+                if (w == (totalNumberOfWaves) && e == 0)
+                 {
+
+                    GameOver("Asgeir is a pro");
                     break;
                 }
-                yield return new WaitForSeconds(spawnWait);
-            }
-            if (gameOver || numberOfWaves == totalNumberOfWaves)
-            {
-                restartText.text = "Press 'R' to restart";
-                restart = true;
-                continueGame = false;
-            }
-            yield return new WaitForSeconds(waveWait);
+                if(!restart)
+                {
+                    waves[w].SetActive(true);
+                }
+
+                w = w + 1;
+            }   
         }
         PrintScore();
         PrintHighscore();
-
     }
 
     public void AddScore(int newScoreValue)
@@ -91,12 +119,22 @@ public class GameController : MonoBehaviour
         score += newScoreValue;
         UpdateScore();
     }
+    
 
     void UpdateScore()
     {
         scoreText.text = "Score: " + score;
     }
 
+    public void AddAmmo()
+    {
+        pl.AddAmmo(ammoValue);
+    }
+
+    /**
+     * Finner høyeste score opnått 
+     * og viser den på skjermen
+     * */
     void PrintHighscore()
     {
         string line;
@@ -119,7 +157,9 @@ public class GameController : MonoBehaviour
         highscoreText.text = "Highscore: " + highscore.ToString();
         file.Close();
     }
-
+    /**
+     * Printer den oppnådde scoren i et tekstdokument
+     * */
     void PrintScore()
     {
         using (StreamWriter sw = File.AppendText(path))
@@ -128,9 +168,11 @@ public class GameController : MonoBehaviour
         }
     }
 
-    public void GameOver()
+    public void GameOver(String t)
     {
-        gameOverText.text = "Game Over!";
-        gameOver = true;
+        gameOverText.text = t;
+        restartText.text = "Press 'R' to restart";
+        restart = true;
+        
     }
 }

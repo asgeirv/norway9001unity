@@ -9,6 +9,6 @@ public class ClickButton : MonoBehaviour {
 
     public void Click()
     {
-        SceneManager.LoadScene("Level1", LoadSceneMode.Additive);
+        SceneManager.LoadScene("Main", LoadSceneMode.Additive);
     }
 }

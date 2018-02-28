@@ -39,7 +39,7 @@ GameObject:
   - component: {fileID: 54026999712494116}
   - component: {fileID: 136061376793748864}
   - component: {fileID: 114099083642509306}
-  - component: {fileID: 114753411738673762}
+  - component: {fileID: 114340966043482442}
   - component: {fileID: 82321866525083550}
   m_Layer: 11
   m_Name: Bolt
@@ -124,8 +124,8 @@ Rigidbody:
   m_GameObject: {fileID: 1497588304898548}
   serializedVersion: 2
   m_Mass: 1
-  m_Drag: 0
-  m_AngularDrag: 0.05
+  m_Drag: 0.6
+  m_AngularDrag: 0
   m_UseGravity: 0
   m_IsKinematic: 0
   m_Interpolate: 0
@@ -223,7 +223,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 20
---- !u!114 &114753411738673762
+--- !u!114 &114340966043482442
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
